@@ -1,4 +1,5 @@
 import React from 'react'
+import Flowchart from './Flowchart';
 
 const MainContainer = () => {
     /**
@@ -6,7 +7,12 @@ const MainContainer = () => {
      */
 
     return (
-        <div></div>
+        <div id='main'>
+            <div id="left"></div>
+            <div id="chart">
+            <Flowchart />
+            </div>
+        </div>
     )
 }
 

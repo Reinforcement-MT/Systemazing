@@ -16,7 +16,6 @@ const PORT: number = 3000;
 // parse incoming requests
 app.use(express.json())
 
-
 // incoming route handlers
 app.use('/api',apiRouter);
 

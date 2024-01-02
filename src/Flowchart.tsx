@@ -9,9 +9,7 @@ import ReactFlow, {
   Connection,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
-
 import Sidebar from './Sidebar';
-
 import './Flowchart.css';
 
 const initialNodes = [

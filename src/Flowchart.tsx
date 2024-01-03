@@ -8,7 +8,6 @@ import ReactFlow,{
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
-import { traverse } from './utils/traverse.js';
 import CustomNode from './nodeTypes/CustomNode';
 import ServerNode from './nodeTypes/ServerNode';
 
@@ -17,7 +16,6 @@ import DatabaseNode from './nodeTypes/DatabaseNode.js';
 import CacheNode from './nodeTypes/CacheNode.js';
 import ClientNode from './nodeTypes/ClientNode.js';
 import LoadBalancerNode from './nodeTypes/LoadBalancerNode.js';
-import ChatBox from './ChatBox.js';
 
 let id = 4;
 const getId = () => `dndnode_${id++}`;

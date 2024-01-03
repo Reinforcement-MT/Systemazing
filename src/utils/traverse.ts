@@ -61,5 +61,5 @@ export function traverse(nodes: Node[], edges: Edge[], initialNode: string) {
   }
 
   console.log('description: ', description);
-
+  return description;
 }

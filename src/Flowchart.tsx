@@ -1,19 +1,14 @@
 import { useState, useRef, useCallback, useMemo } from 'react';
 import ReactFlow, {
   ReactFlowProvider,
-  addEdge,
-  useNodesState,
-  useEdgesState,
   Controls,
   ReactFlowInstance,
-  Connection,
   Node,
-  Edge,
+  Edge
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
 import { traverse } from './utils/traverse.js';
-import Sidebar from './Sidebar';
 import CustomNode from './nodeTypes/CustomNode';
 import ServerNode from './nodeTypes/ServerNode';
 
@@ -24,57 +19,11 @@ import ClientNode from './nodeTypes/ClientNode.js';
 import LoadBalancerNode from './nodeTypes/LoadBalancerNode.js';
 import ChatBox from './ChatBox.js';
 
-const initialNodes: Node[] = [
-  {
-    id: 'dndnode_1',
-    type: 'default',
-    data: { label: 'Client' },
-    position: {
-      x: 250,
-      y: 5,
-    },
-  },
-  {
-    id: 'dndnode_2',
-    type: 'default',
-    data: { label: 'Server' },
-    position: {
-      x: 273,
-      y: 92.25,
-    },
-  },
-  {
-    id: 'dndnode_3',
-    type: 'default',
-    data: { label: 'Database' },
-    position: {
-      x: 280.5,
-      y: 196.25,
-    },
-  },
-];
-
-const initialEdges: Edge[] = [
-  {
-    source: 'dndnode_1',
-    sourceHandle: null,
-    target: 'dndnode_2',
-    targetHandle: null,
-    id: 'client-to-server',
-  },
-  {
-    source: 'dndnode_2',
-    sourceHandle: null,
-    target: 'dndnode_3',
-    targetHandle: null,
-    id: 'server-to-db',
-  },
-];
-
-let id = 0;
+let id = 4;
 const getId = () => `dndnode_${id++}`;
 
-const Flowchart = () => {
+type FlowchartProps  = {nodes: Node[], edges: Edge[], onNodesChange: any, onEdgesChange: any, onConnect: any, setNodes: any};
+const Flowchart = ({nodes, edges, setNodes, onNodesChange, onEdgesChange, onConnect}: FlowchartProps) => {
   const nodeTypes = useMemo(() => ({
     custom: CustomNode,
     server: ServerNode,
@@ -83,26 +32,27 @@ const Flowchart = () => {
     client: ClientNode,
     loadbalancer: LoadBalancerNode}), []);
   const reactFlowWrapper = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [reactFlowInstance, setReactFlowInstance] =
-    useState<ReactFlowInstance | null>(null);
+  const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
 
-  /*
-  const onChange = () => {
-    console.log('onChange!!');
-    traverse(nodes, edges, 'dndnode_1');
-  };
-  */
-
-  const onConnect = useCallback((params: Connection) => {
-    setEdges((eds) => addEdge(params, eds));
-  }, []);
 
   const onDragOver = useCallback((event: React.DragEvent) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
   }, []);
+
+  const setCustomData = (id: string, newCustomData: string) => {
+    // Traverse nodes, find the right ID, then update its data, then setNodes to the new Nodes object
+    setNodes((prevNodes: Node[]) => {
+      return prevNodes.map( node => {
+        if (node.id === id) {
+          const data = {...node.data, customData: newCustomData};
+          const newNode = {...node, data};
+          return newNode;
+        }
+        else return node;
+      })
+    })
+  }
 
   const onDrop = useCallback(
     (event: React.DragEvent) => {
@@ -127,10 +77,10 @@ const Flowchart = () => {
         id: getId(),
         type,
         position,
-        data: { label: `${type}` },
+        data: { label: `${type}`, setCustomData },
       };
 
-      setNodes((nds) => nds.concat(newNode));
+      setNodes((nds: Node[]) => nds.concat(newNode));
     },
     [reactFlowInstance]
   );
@@ -154,10 +104,7 @@ const Flowchart = () => {
             <Controls />
           </ReactFlow>
         </div>
-        <Sidebar />
       </ReactFlowProvider>
-      <ChatBox/>
-      <button onClick={(e) => {traverse(nodes, edges, 'dndnode_1')}}>Analyze</button>
     </div>
   );
 };

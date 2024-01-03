@@ -1,15 +1,23 @@
 import { Node, Edge } from 'reactflow';
 
+// System design: client CONNECTS TO database THAT stores original file, which CONNECTS TO server THAT encodes the video file, which CONNECTS TO a database THAT stores the encoded video file AND a load balancer THAT distributes content to a CDN, which CONNECTS TO other clients.
+
+function getNodeLabel(node: Node) {
+  return (node.type === 'custom') ? node.data.customData : node.data.label;
+}
 
 // Build ChatGPT prompt line for a node
 function buildNodeDescription(node: Node): string {
-  return `Node~ ${node}`;
+  const label = getNodeLabel(node);
+  // console.log(node);
+  return `Entity: ${label}`;
 }
 
 // Build ChatGPT prompt line for an edge
-function buildEdgeDescription(edge: Edge, source?: Node, dest?: Node): string {
-  return `Edge~ ${edge}`;
-}
+function buildEdgeDescription(edge: Edge, source: Node, dest: Node): string {
+  // console.log(edge);
+  return `${getNodeLabel(source)} CONNECTS TO ${getNodeLabel(dest)}`;
+};
 
 
 export function traverse(nodes: Node[], edges: Edge[], initialNode: string) {

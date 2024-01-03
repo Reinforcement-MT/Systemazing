@@ -18,7 +18,7 @@ function buildEdgeDescription(edge: Edge,source: Node,dest: Node): string {
 };
 
 
-export async function traverse(nodes: Node[],edges: Edge[],initialNode: string) {
+export function traverse(nodes: Node[],edges: Edge[],initialNode: string) {
 
   // Map from node names to objects
   const nodeMap: Record<string,Node> = Object.fromEntries(nodes.map(node => [node.id,node]));

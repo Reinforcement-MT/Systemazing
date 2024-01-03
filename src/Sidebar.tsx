@@ -1,6 +1,7 @@
 import React from 'react';
 import { TbLoadBalancer } from 'react-icons/tb';
 import { GrServer } from 'react-icons/gr';
+import { MdComputer } from 'react-icons/md';
 import { BsDatabase } from 'react-icons/bs';
 import { SiCachet } from 'react-icons/si';
 import { IoPersonOutline } from 'react-icons/io5';
@@ -21,7 +22,8 @@ export default function Sidebar() {
         onDragStart={(event) => onDragStart(event, 'client')}
         draggable
       >
-        Client
+        <MdComputer />
+        &nbsp; Client
       </div>
       <div
         className="dndnode loadbalancer"
@@ -32,7 +34,8 @@ export default function Sidebar() {
         &nbsp; Load Balancer
       </div>
       <div className="dndnode server" onDragStart={(event) => onDragStart(event, 'server')} draggable>
-        Server
+        <GrServer />
+        &nbsp; server
       </div>
       <div
         className="dndnode database"

@@ -1,0 +1,57 @@
+import { Node, Edge } from 'reactflow';
+
+
+// Build ChatGPT prompt line for a node
+function buildNodeDescription(node: Node): string {
+  return `Node~ ${node}`;
+}
+
+// Build ChatGPT prompt line for an edge
+function buildEdgeDescription(edge: Edge, source?: Node, dest?: Node): string {
+  return `Edge~ ${edge}`;
+}
+
+
+export function traverse(nodes: Node[], edges: Edge[], initialNode: string) {
+
+  // Map from node names to objects
+  const nodeMap: Record<string, Node> = Object.fromEntries(nodes.map(node => [node.id, node]));
+  edges = structuredClone(edges);
+
+  if (!nodeMap[initialNode]) { throw new Error('Starting node not found!') }
+
+
+  // Graph description to send to ChatGPT
+  const description: string[] = [];
+
+  // Traverse list using Breadth-First Search
+  const queue: string[] = [initialNode];
+  const visitedNodes: Record<string, boolean> = {initialNode: true};
+  while (queue.length > 0) {
+    const currentNodeName = queue.shift()!;
+    // console.log('Name: ', currentNodeName);
+    const currentNode = nodeMap[currentNodeName];
+    // console.log('Node: ', currentNode);
+    // Maybe push this first time node is referenced?
+    description.push(buildNodeDescription(currentNode));
+    visitedNodes[currentNode.id] = true;
+
+    // Add all successor nodes.
+    // Use 'filter' to remove edges from edge list once they've been described.
+    edges.filter(edge => {
+      if (edge.source === currentNode.id) {
+        // Describe connection
+        description.push(buildEdgeDescription(edge, nodeMap[edge.source], nodeMap[edge.target]))
+        // Follow edge
+        if (!visitedNodes[edge.target]) {
+          queue.push(edge.target);
+        }
+        return false;
+      }
+      return true;
+    });
+  }
+
+  console.log('description: ', description);
+
+}

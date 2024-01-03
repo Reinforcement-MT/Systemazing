@@ -2,7 +2,6 @@
 import { Handle, Position } from 'reactflow';
 import { useCallback } from 'react';
 
-type NodeProps = {data: any, id: string}
 function CustomNode( {data, id}: NodeProps ) {
 
   const onChange: React.ChangeEventHandler<HTMLInputElement> = useCallback((evt) => {

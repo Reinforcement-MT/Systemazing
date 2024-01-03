@@ -25,7 +25,8 @@
   },
   "include": [
     "src",
-    "server"
+    "server",
+    "index.d.ts"
   ],
   "references": [
     {

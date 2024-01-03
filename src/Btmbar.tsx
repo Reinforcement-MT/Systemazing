@@ -1,6 +1,8 @@
 import React from 'react';
+import { traverse } from './utils/traverse';
 
-const Btmbar = () => {
+type BottomBarProps = {nodes: any, edges: any };
+const Btmbar = ({nodes, edges}: BottomBarProps) => {
   return (
     <div>
       <div>btmbar</div>

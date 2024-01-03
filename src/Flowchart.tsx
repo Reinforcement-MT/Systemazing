@@ -13,7 +13,6 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 
 import { traverse } from './utils/traverse.js';
-
 import Sidebar from './Sidebar';
 import CustomNode from './nodeTypes/CustomNode';
 

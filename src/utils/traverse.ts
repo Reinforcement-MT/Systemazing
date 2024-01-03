@@ -1,4 +1,4 @@
-import { Node, Edge } from 'reactflow';
+import { Node,Edge } from 'reactflow';
 
 
 // Build ChatGPT prompt line for a node
@@ -7,15 +7,15 @@ function buildNodeDescription(node: Node): string {
 }
 
 // Build ChatGPT prompt line for an edge
-function buildEdgeDescription(edge: Edge, source?: Node, dest?: Node): string {
+function buildEdgeDescription(edge: Edge,source?: Node,dest?: Node): string {
   return `Edge~ ${edge}`;
 }
 
 
-export function traverse(nodes: Node[], edges: Edge[], initialNode: string) {
+export async function traverse(nodes: Node[],edges: Edge[],initialNode: string) {
 
   // Map from node names to objects
-  const nodeMap: Record<string, Node> = Object.fromEntries(nodes.map(node => [node.id, node]));
+  const nodeMap: Record<string,Node> = Object.fromEntries(nodes.map(node => [node.id,node]));
   edges = structuredClone(edges);
 
   if (!nodeMap[initialNode]) { throw new Error('Starting node not found!') }
@@ -26,7 +26,7 @@ export function traverse(nodes: Node[], edges: Edge[], initialNode: string) {
 
   // Traverse list using Breadth-First Search
   const queue: string[] = [initialNode];
-  const visitedNodes: Record<string, boolean> = {initialNode: true};
+  const visitedNodes: Record<string,boolean> = { initialNode: true };
   while (queue.length > 0) {
     const currentNodeName = queue.shift()!;
     // console.log('Name: ', currentNodeName);
@@ -41,7 +41,7 @@ export function traverse(nodes: Node[], edges: Edge[], initialNode: string) {
     edges.filter(edge => {
       if (edge.source === currentNode.id) {
         // Describe connection
-        description.push(buildEdgeDescription(edge, nodeMap[edge.source], nodeMap[edge.target]))
+        description.push(buildEdgeDescription(edge,nodeMap[edge.source],nodeMap[edge.target]))
         // Follow edge
         if (!visitedNodes[edge.target]) {
           queue.push(edge.target);
@@ -51,7 +51,7 @@ export function traverse(nodes: Node[], edges: Edge[], initialNode: string) {
       return true;
     });
   }
+  // console.log('description: ',description);
 
-  console.log('description: ', description);
 
-}
+};

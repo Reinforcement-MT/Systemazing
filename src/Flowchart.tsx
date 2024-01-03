@@ -1,5 +1,5 @@
-import { useState, useRef, useCallback, useMemo } from 'react';
-import ReactFlow, {
+import { useState,useRef,useCallback,useMemo } from 'react';
+import ReactFlow,{
   ReactFlowProvider,
   addEdge,
   useNodesState,
@@ -80,11 +80,12 @@ const Flowchart = () => {
     database: DatabaseNode,
     cache: CacheNode,
     client: ClientNode,
-    loadbalancer: LoadBalancerNode}), []);
+    loadbalancer: LoadBalancerNode
+  }),[]);
   const reactFlowWrapper = useRef(null);
-  const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
-  const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [reactFlowInstance, setReactFlowInstance] =
+  const [nodes,setNodes,onNodesChange] = useNodesState(initialNodes);
+  const [edges,setEdges,onEdgesChange] = useEdgesState(initialEdges);
+  const [reactFlowInstance,setReactFlowInstance] =
     useState<ReactFlowInstance | null>(null);
 
   /*
@@ -95,13 +96,13 @@ const Flowchart = () => {
   */
 
   const onConnect = useCallback((params: Connection) => {
-    setEdges((eds) => addEdge(params, eds));
-  }, []);
+    setEdges((eds) => addEdge(params,eds));
+  },[]);
 
   const onDragOver = useCallback((event: React.DragEvent) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
-  }, []);
+  },[]);
 
   const onDrop = useCallback(
     (event: React.DragEvent) => {
@@ -113,11 +114,11 @@ const Flowchart = () => {
       if (typeof type === 'undefined' || !type) {
         return;
       }
-      
+
       // reactFlowInstance.project was renamed to reactFlowInstance.screenToFlowPosition
       // and you don't need to subtract the reactFlowBounds.left/top anymore
       // details: https://reactflow.dev/whats-new/2023-11-10
-      console.log('Instance: ', reactFlowInstance?.toObject());
+      console.log('Instance: ',reactFlowInstance?.toObject());
       const position = reactFlowInstance!.screenToFlowPosition({
         x: event.clientX,
         y: event.clientY,
@@ -155,7 +156,7 @@ const Flowchart = () => {
         </div>
         <Sidebar />
       </ReactFlowProvider>
-      <button onClick={(e) => {traverse(nodes, edges, 'dndnode_1')}}>Analyze</button>
+      <button onClick={(e) => { traverse(nodes,edges,'dndnode_1') }}>Analyze</button>
     </div>
   );
 };

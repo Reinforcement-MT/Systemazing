@@ -1,7 +1,13 @@
 import { Handle, Position } from 'reactflow';
 import { BsDatabase } from 'react-icons/bs';
+import { useState, useCallback } from 'react';
 
-function DatabaseNode() {
+function DatabaseNode( {data, id}: NodeProps ) {
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+
+  const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback((evt) => {
+    data.setCustomData(id, evt.target.value);
+  }, []);
 
   return (
     <>

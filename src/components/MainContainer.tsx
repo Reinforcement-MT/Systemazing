@@ -7,9 +7,9 @@ const MainContainer = () => {
      */
 
     return (
-        <div id='main'>
-            <div id="left" data-testid='left'></div>
-            <div id="chart">
+        <div id='main' data-testid='main'>
+            {/* <div id="left" data-testid='left'></div> */}
+            <div id="chart" data-testid='chart'>
             <Flowchart />
             </div>
         </div>

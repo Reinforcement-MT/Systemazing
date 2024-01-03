@@ -1,14 +1,17 @@
 import { Handle, Position } from 'reactflow';
+import { SiCachet } from 'react-icons/si';
+
 
 function CacheNode() {
 
   return (
     <>
-      <Handle type="target" position={Position.Top} />
-      <div className='react-flow__node-default'>
-        Cache
+      <Handle type="target" position={Position.Left} />
+      <div className='default-node'>
+        <SiCachet />
+        <p>Cache</p>
       </div>
-      <Handle type="source" position={Position.Bottom} id="a" />
+      <Handle type="source" position={Position.Right} id="a" />
     </>
   );
 }

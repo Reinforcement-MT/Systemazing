@@ -3,9 +3,10 @@ import { traverse } from "./utils/traverse";
 import { useState } from "react";
 import { AiOutlineEnter } from 'react-icons/ai';
 
-export default function ChatBox({ nodes,edges }: TraverseProps) {
-  const intialText = `Once the design is complete, enter your system design requirements below for review`
-  const [text,setText] = useState(intialText);
+
+export default function ChatBox({nodes, edges}: TraverseProps){
+  const intialText = `Enter your system design requirements below for review:`
+  const [text, setText] = useState(intialText);
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

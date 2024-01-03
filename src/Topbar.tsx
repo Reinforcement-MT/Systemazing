@@ -5,7 +5,6 @@ import { BsDatabase } from 'react-icons/bs';
 import { SiCachet } from 'react-icons/si';
 import { IoPersonOutline } from 'react-icons/io5';
 import { CiLaptop } from 'react-icons/ci';
-import './Topbar.css';
 import './Flowchart.css';
 
 export default function Topbar() {
@@ -15,13 +14,8 @@ export default function Topbar() {
   };
   //drag and drop nodes: loadBalancer, server, database, cache,
   return (
-    <div>
-      <div className="title">
-      Systemazing
-      </div>
-      <div className="description">
-        Drag and drop to build your system diagram!
-      </div>
+    <div id="top-bar">
+    <div id='node-box'>
       <div className="topdndnode">
         <div
           className="dndnode client"
@@ -71,6 +65,13 @@ export default function Topbar() {
           <IoPersonOutline />
           &nbsp; Custom Input
         </div>
+      </div>
+    </div>
+    <div className="title">
+      Systemazing
+      </div>
+      <div className="description">
+        <p><i>Drag and drop to build your system diagram {'-->'}</i></p>
       </div>
     </div>
   );

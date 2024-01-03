@@ -1,4 +1,5 @@
 import { Handle, Position } from 'reactflow';
+import { BsDatabase } from 'react-icons/bs';
 import { useState, useCallback } from 'react';
 
 function DatabaseNode( {data, id}: NodeProps ) {
@@ -10,13 +11,12 @@ function DatabaseNode( {data, id}: NodeProps ) {
 
   return (
     <>
-      <Handle type="target" position={Position.Top} />
-      <div className='react-flow__node-default node-column'>
-        Database
-        <button className="foldButton" onClick={() => {setDropdownOpen(dd => !dd)}}>➤</button>
-        {dropdownOpen && <textarea placeholder='Add Details' onChange={onChange}></textarea> }
+      <Handle type="target" position={Position.Left} />
+      <div className='default-node'>
+        <BsDatabase />
+        <p>DB</p>
       </div>
-      <Handle type="source" position={Position.Bottom} id="a" />
+      <Handle type="source" position={Position.Right} id="a" />
     </>
   );
 }

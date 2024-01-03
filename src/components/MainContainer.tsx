@@ -16,13 +16,13 @@ import { useCallback } from 'react';
 
 
 const initialNodes: Node[] = [
-  {
+    {
     id: 'dndnode_1',
     type: 'client',
     data: { label: 'Client' },
     position: {
-      x: 250,
-      y: 5,
+      x: 25,
+      y: 75,
     },
   },
   {
@@ -30,8 +30,8 @@ const initialNodes: Node[] = [
     type: 'server',
     data: { label: 'Server' },
     position: {
-      x: 273,
-      y: 92.25,
+      x: 125,
+      y: 125,
     },
   },
   {
@@ -39,8 +39,8 @@ const initialNodes: Node[] = [
     type: 'database',
     data: { label: 'Database' },
     position: {
-      x: 280.5,
-      y: 196.25,
+      x: 250,
+      y: 175,
     },
   },
 ];
@@ -72,11 +72,9 @@ const MainContainer = () => {
   const onConnect = useCallback((params: Connection) => { setEdges((eds) => addEdge(params, eds)); }, []);
 
   return (
-    <div id="main">
-      <div id="top">
-        <Topbar />
-      </div>
-      <div id="chart">
+    <div id='main' data-testid="main">
+      <Topbar />
+      <div id="chart" data-testid='chart'>
         <Flowchart nodes={nodes} setNodes={setNodes} onNodesChange={onNodesChange} edges={edges} setEdges={setEdges} onEdgesChange={onEdgesChange} />
       </div>
       <div id="btm">

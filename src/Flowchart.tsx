@@ -9,8 +9,8 @@ import ReactFlow,{
 import 'reactflow/dist/style.css';
 
 import { traverse } from './utils/traverse.js';
-import CustomNode from './nodeTypes/CustomNode';
-import ServerNode from './nodeTypes/ServerNode';
+import CustomNode from './nodeTypes/CustomNode.js';
+import ServerNode from './nodeTypes/ServerNode.js';
 
 import './Flowchart.css';
 import DatabaseNode from './nodeTypes/DatabaseNode.js';
@@ -102,7 +102,7 @@ const Flowchart = ({ nodes,edges,setNodes,onNodesChange,onEdgesChange,onConnect 
             onDragOver={onDragOver}
             fitView
           >
-            <Controls />
+            {/* <Controls /> */}
           </ReactFlow>
         </div>
       </ReactFlowProvider>

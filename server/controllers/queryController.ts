@@ -33,7 +33,9 @@ export const makeQuery: RequestHandler = async (req: Request,res: Response,next:
     const error: ServerError = {
       log: 'Error occurred in makeQuery middleware function',
       status: 500,
-      message: err
+      message: {
+        err: `${err}`
+      }
     }
     return next(error);
   }

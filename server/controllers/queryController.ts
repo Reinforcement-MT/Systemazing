@@ -13,18 +13,14 @@ const client = new OpenAI({
 const makeQuery: RequestHandler = async (req: Request,res: Response,next: NextFunction) => {
   try {
 
-    const bodyJson = JSON.parse(req.body);
-
-    const { query } = bodyJson;
+    const { description,graph } = req.body;
     // const query = 'System: Video Streaming Application. System Requirements: Upload and Stream content. System Design: client CONNECTS TO database THAT stores original file, which CONNECTS TO server THAT encodes the video file, which CONNECTS TO a database THAT stores the encoded video file AND a load balancer THAT distributes content to a CDN, which CONNECTS TO other clients.'
-
-    // console.log('queryController - query: ',query);
 
     const params: OpenAI.Chat.ChatCompletionCreateParams = {
       model: "gpt-3.5-turbo",
       messages: [
-        { "role": "system","content": "You are a software engineering coach for system design interviews. Please critique this system design. Please summarize the main points of your response in a one or two paragraphs, instead of a numbered list." },
-        { "role": "user","content": `${query};` }
+        { "role": "system","content": "You are a software engineering coach for system design interviews. Please critique this system design in a few paragraphs. Please do not use a numbered list for your response." },
+        { "role": "user","content": `${description}: ${graph};` }
       ]
     };
 

@@ -57,7 +57,7 @@ export async function traverse(nodes: Node[],edges: Edge[],initialNode: string) 
       return true;
     });
   }
-  // console.log('description: ',description);
 
+  return description;
 
 };

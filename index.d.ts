@@ -7,3 +7,6 @@ type NodeData = {
 }
 
 type NodeProps = {data: any, id: string}
+
+
+type TraverseProps = {nodes: any, edges: any };

@@ -8,11 +8,11 @@ function CustomNode() {
 
   return (
     <>
-      <Handle type="target" position={Position.Top} />
-      <div className='react-flow__node-default'>
+      <Handle type="target" position={Position.Left} />
+      <div className='custom-node'>
         <input id="text" name="text"  className="nodrag" placeholder="Edit Text"/>
       </div>
-      <Handle type="source" position={Position.Bottom} id="a" />
+      <Handle type="source" position={Position.Right} id="a" />
     </>
   );
 }

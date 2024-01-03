@@ -1,13 +1,15 @@
 import { Handle, Position } from 'reactflow';
+import { CiLaptop } from 'react-icons/ci';
 
 function ClientNode() {
 
   return (
     <>
-      <div className='react-flow__node-input'>
-        Client
+      <div className='default-node'>
+        <CiLaptop />
+        <p>Client</p>
       </div>
-      <Handle type="source" position={Position.Bottom} id="a" />
+      <Handle type="source" position={Position.Right} id="a" />
     </>
   );
 }

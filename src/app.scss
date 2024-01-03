@@ -1,25 +1,184 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+//   box-sizing: border-box;
 }
 
 #main {
-    border: 1px solid black;
-    height: 100vh;
+  height: 100vh;
+  background-color: #fbfbfb;
 
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  align-items: center;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+    #top-bar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        width: 98%;
+        // padding: 5%;
+
+        #node-box {
+          position: absolute;
+          left: 65%;
+          height: 20%;
+          width: 32.4%;
+          padding: 10px;
+          margin: 5px;
+          z-index: 1;
+      
+          .topdndnode {
+                  display: flex;
+                  flex-wrap: wrap;
+                //   width: 36%;
+                  height: 18vh;
+                  justify-content: space-around;
+                  align-items: center;
+                  /* border: 1px solid black; */
+                  background-color: #edededbd;
+                  padding: 1%;
+                  border-radius: 5px;
+              }
+          
+        }
+                .description {
+                    margin-bottom: 10px;
+                    color: #0e5142f2;
+                }
+        
+                .title {
+                    position: relative;
+                    text-align: center;
+                    font-weight: 100;
+                    font-size: 40px;
+                    color: #438878f2;
+                    // visibility: hidden;
+                }
+    }
+
+  
+  #chart {
+    border-radius: 5px;
+    height: 70%;
+    width: 90%;
+    padding: 10px;
+    box-shadow: inset 0px 0px 20px -.5px rgba(128, 128, 128, 0.193);
+    background-color: #ffffff;
+
+    .dndflow {
+            flex-direction: column;
+            display: flex;
+            flex-grow: 1;
+            height: 100%;
+        }
+    
+        .dndnode {
+            height: 40px;
+            width: 28%;
+            padding: 5px;
+            border: 1px solid #000000;
+            font-size: .75rem;
+            border-radius: 5px;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: grab;
+        }
+    
+        .dndflow .dndnode.input {
+            border-color: #0041d0;
+        }
+    
+        .dndflow .dndnode.output {
+            border-color: #ff0072;
+        }
+    
+        .dndflow .reactflow-wrapper {
+            flex-grow: 1;
+            height: 100%;
+        }
+    
+        .dndflow .selectall {
+            margin-top: 10px;
+        }
+    
+        .react-flow__node-custom input {
+            text-align: center;
+            border: none;
+        }
+    
+        .react-flow__node-custom input ::placeholder {
+            color: lightgray;
+        }
+    
+        @media screen and (min-width: 768px) {
+            .dndflow {
+                flex-direction: row;
+            }
+    
+            .dndflow #topbar {
+                width: 20%;
+                max-width: 250px;
+            }
+        }
+  }
+  #btm {
+    border: 1px solid #43887887;
+    border-radius: 10px;
+    // resize: both;
+    // overflow: auto;
+    height: 10%;
+    width: 40%;
+    padding: 10px;
+    margin: 5px;
+    // box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    background-color: #ffffff;
+  }
+}
+
+.react-flow__attribution {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    visibility: hidden;
+}
+
+.default-node {
     display: flex;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
+    width: 2.5vw;
+    height: 2.5vw;
+    border: .5px solid rgba(128, 128, 128, 0.461);
+    border-radius: 3px;
+    color: #949494;
 
-    #left {
-        border: 1px solid black;
-        height: 98%;
-        width: 49%;
+    p {
+        font-size: .3rem;
+    }
+}
+
+.custom-node {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    // padding: 1%;
+    width: 4vw;
+    height: 2.5vw;
+    border: .5px solid rgba(128, 128, 128, 0.461);
+    border-radius: 3px;
+    color: #949494;
+
+    input {
+        font-size: .4rem;
+        outline: none;
+        height: 100%;
+        width: 95%;
+        overflow: scroll;
     }
 
-    #chart{
-        border: 1px solid black;
-        height: 98%;
-        width: 49%;
-    }
 }

@@ -12,43 +12,42 @@ import ReactFlow, {
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 
-import { traverse } from './utils/traverse.js';
-import Sidebar from './Sidebar';
-import CustomNode from './nodeTypes/CustomNode';
-import ServerNode from './nodeTypes/ServerNode';
+import { traverse } from '../utils/traverse.js';
+import CustomNode from '../nodeTypes/CustomNode.js';
+import ServerNode from '../nodeTypes/ServerNode.js';
 
 import './Flowchart.css';
-import DatabaseNode from './nodeTypes/DatabaseNode.js';
-import CacheNode from './nodeTypes/CacheNode.js';
-import ClientNode from './nodeTypes/ClientNode.js';
-import LoadBalancerNode from './nodeTypes/LoadBalancerNode.js';
+import DatabaseNode from '../nodeTypes/DatabaseNode.js';
+import CacheNode from '../nodeTypes/CacheNode.js';
+import ClientNode from '../nodeTypes/ClientNode.js';
+import LoadBalancerNode from '../nodeTypes/LoadBalancerNode.js';
 
 const initialNodes: Node[] = [
   {
     id: 'dndnode_1',
-    type: 'default',
+    type: 'client',
     data: { label: 'Client' },
     position: {
-      x: 250,
-      y: 5,
+      x: 25,
+      y: 75,
     },
   },
   {
     id: 'dndnode_2',
-    type: 'default',
+    type: 'server',
     data: { label: 'Server' },
     position: {
-      x: 273,
-      y: 92.25,
+      x: 125,
+      y: 125,
     },
   },
   {
     id: 'dndnode_3',
-    type: 'default',
+    type: 'database',
     data: { label: 'Database' },
     position: {
-      x: 280.5,
-      y: 196.25,
+      x: 250,
+      y: 175,
     },
   },
 ];
@@ -150,12 +149,11 @@ const Flowchart = () => {
             onDragOver={onDragOver}
             fitView
           >
-            <Controls />
+            {/* <Controls /> */}
           </ReactFlow>
         </div>
-        <Sidebar />
       </ReactFlowProvider>
-      <button onClick={(e) => {traverse(nodes, edges, 'dndnode_1')}}>Analyze</button>
+
     </div>
   );
 };

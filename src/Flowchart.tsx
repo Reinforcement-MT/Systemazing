@@ -13,7 +13,6 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 
 import { traverse } from './utils/traverse.js';
-import Sidebar from './Sidebar';
 import CustomNode from './nodeTypes/CustomNode';
 import ServerNode from './nodeTypes/ServerNode';
 
@@ -153,9 +152,8 @@ const Flowchart = () => {
             <Controls />
           </ReactFlow>
         </div>
-        <Sidebar />
       </ReactFlowProvider>
-      <button onClick={(e) => {traverse(nodes, edges, 'dndnode_1')}}>Analyze</button>
+
     </div>
   );
 };

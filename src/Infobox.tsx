@@ -1,18 +1,14 @@
-import { useState, useCallback } from 'react';
+import React from 'react';
 
-type InfoboxProps = { setCustomData: Function };
-export default function Infobox({ setCustomData }: InfoboxProps) {
-
-  const onChange: React.ChangeEventHandler<HTMLTextAreaElement> = useCallback(
-    (evt) => { setCustomData(evt.target.value); },
-    []
-  );
+type InfoboxProps = { infoState: string, onChange: any };
+export default function Infobox({ infoState, onChange }: InfoboxProps) {
 
   return (
     <div id="Infobox">
       <textarea
         id="infobox-text-area"
         placeholder="Enter Details Here"
+        value={infoState}
         onChange={onChange}
       />
     </div>

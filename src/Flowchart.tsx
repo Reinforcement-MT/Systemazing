@@ -1,5 +1,5 @@
 import { useState,useRef,useCallback,useMemo } from 'react';
-import ReactFlow,{
+import ReactFlow, {
   ReactFlowProvider,
   Controls,
   ReactFlowInstance,
@@ -21,7 +21,7 @@ let id = 4;
 const getId = () => `dndnode_${id++}`;
 
 type FlowchartProps = { nodes: Node[],edges: Edge[],onNodesChange: any,onEdgesChange: any,onConnect: any,setNodes: any, setSelection: any, onSelectionChange: any };
-const Flowchart = ({ nodes, edges, setNodes, onNodesChange, onEdgesChange, onConnect, setSelection }: FlowchartProps) => {
+const Flowchart = ({ nodes, edges, setNodes, onNodesChange, onEdgesChange, onConnect, setSelection, onSelectionChange }: FlowchartProps) => {
   const nodeTypes = useMemo(() => ({
     custom: CustomNode,
     server: ServerNode,
@@ -61,7 +61,7 @@ const Flowchart = ({ nodes, edges, setNodes, onNodesChange, onEdgesChange, onCon
         id: getId(),
         type,
         position,
-        data: { label: `${type}` },
+        data: { label: `${type}`, customData: "" },
       };
 
       setNodes((nds: Node[]) => nds.concat(newNode));
@@ -82,6 +82,7 @@ const Flowchart = ({ nodes, edges, setNodes, onNodesChange, onEdgesChange, onCon
             onInit={setReactFlowInstance}
             onDrop={onDrop}
             onDragOver={onDragOver}
+            onSelectionChange={onSelectionChange}
             fitView
           >
             <Controls />

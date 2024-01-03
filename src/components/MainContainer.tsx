@@ -3,7 +3,7 @@ import Flowchart from '../Flowchart';
 import Topbar from '../Topbar';
 import Btmbar from '../Btmbar';
 import Infobox from '../Infobox';
-import { useState } from 'react';
+import { useState, useCallback } from 'react';
 
 import {
   useOnSelectionChange,
@@ -15,13 +15,11 @@ import {
   Connection,
 } from 'reactflow';
 
-import { useCallback } from 'react';
-
 const initialNodes: Node[] = [
   {
     id: 'dndnode_1',
     type: 'client',
-    data: { label: 'Client' },
+    data: { label: 'Client', customData:"" },
     position: {
       x: 250,
       y: 5,
@@ -30,7 +28,7 @@ const initialNodes: Node[] = [
   {
     id: 'dndnode_2',
     type: 'server',
-    data: { label: 'Server' },
+    data: { label: 'Server', customData:"" },
     position: {
       x: 273,
       y: 92.25,
@@ -39,7 +37,7 @@ const initialNodes: Node[] = [
   {
     id: 'dndnode_3',
     type: 'database',
-    data: { label: 'Database' },
+    data: { label: 'Database', customData:"" },
     position: {
       x: 280.5,
       y: 196.25,
@@ -70,28 +68,29 @@ const MainContainer = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
+  const [infoState, setInfoState] = useState("INFO");
+  console.log("infoState: ", infoState);
+
   const onConnect = useCallback((params: Connection) => {
     setEdges((eds) => addEdge(params, eds));
   }, []);
 
-  // const [selection, setSelection] = useState<GraphSelection>({nodes: [], edges: []});
-
-  const [selectedNodes, setSelectedNodes] = useState<string[]>([]);
-  const [selectedEdges, setSelectedEdges] = useState<string[]>([]);
-
   useOnSelectionChange({
-    onChange: ({ nodes, edges }) => {
-      setSelectedNodes(nodes.map((node) => node.id));
-      setSelectedEdges(edges.map((edge) => edge.id));
-    },
-  });
+    onChange: ({ nodes: selectedNodes,  edges: selectedEdges }) => {
+      nodes.forEach(node => {
+        if (node.selected) {
+          console.log("Setting info state: ", node.data.customData)
+          setInfoState(node.data.customData);
+        }}
+      )}}
+    );
 
   const setCustomData = (newCustomData: string) => {
     // Traverse nodes, find the right ID, then update its data, then setNodes to the new Nodes object
     console.log("Custom data!!", newCustomData)
     setNodes((prevNodes: Node[]) => {
       return prevNodes.map(node => {
-        if (node.id === selectedNodes[0]) {
+        if (node.selected) {
           const data = { ...node.data,customData: newCustomData };
           const newNode = { ...node,data };
           return newNode;
@@ -101,6 +100,11 @@ const MainContainer = () => {
     })
   }
 
+
+  const onChange = useCallback( (evt) => {
+    setInfoState(evt.target.value);
+    setCustomData(evt.target.value);
+  }, []);
 
 
   return (
@@ -117,8 +121,7 @@ const MainContainer = () => {
             onEdgesChange={onEdgesChange}
           />
         </div>
-        <Infobox setCustomData={setCustomData}
-        />
+        <Infobox infoState={infoState} onChange={onChange} />
         <div id="btm">
           <Btmbar nodes={nodes} edges={edges} />
         </div>

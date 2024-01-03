@@ -36,6 +36,7 @@ export function traverse(nodes: Node[],edges: Edge[],initialNode: string) {
   while (queue.length > 0) {
     const currentNodeName = queue.shift()!;
     const currentNode = nodeMap[currentNodeName];
+    console.log("Node: ", currentNode);
 
     // Maybe push this first time node is referenced?
     description.push(buildNodeDescription(currentNode));

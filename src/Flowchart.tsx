@@ -65,7 +65,7 @@ const initialEdges: Edge[] = [
   },
 ];
 
-let id = 0;
+let id = 4;
 const getId = () => `dndnode_${id++}`;
 
 const Flowchart = () => {

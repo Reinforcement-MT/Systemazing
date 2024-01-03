@@ -5,11 +5,12 @@ import dotenv from 'dotenv';
 import { ServerError } from '../types/server-types';
 
 dotenv.config();
+
 const client = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY
 });
 
-export const makeQuery: RequestHandler = async (req: Request,res: Response,next: NextFunction) => {
+const makeQuery: RequestHandler = async (req: Request,res: Response,next: NextFunction) => {
   try {
 
     const { query } = req.body;
@@ -21,11 +22,13 @@ export const makeQuery: RequestHandler = async (req: Request,res: Response,next:
         { "role": "system","content": "You are a software engineering coach for system design interviews." },
         { "role": "user","content": `${query}` }
       ]
-    }
+    };
 
     const chatCompletion: OpenAI.Chat.ChatCompletion = await client.chat.completions.create(params);
 
-    res.locals.chatCompletion = chatCompletion;
+    // console.log('makeQuery - chatCompletion: ',chatCompletion);
+
+    res.locals.chatCompletion = chatCompletion['choices'][0]['message']['content']
 
     return next();
   }
@@ -40,3 +43,5 @@ export const makeQuery: RequestHandler = async (req: Request,res: Response,next:
     return next(error);
   }
 };
+
+export { makeQuery }

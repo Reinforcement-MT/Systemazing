@@ -4,15 +4,17 @@ import { GrServer } from 'react-icons/gr';
 import { BsDatabase } from 'react-icons/bs';
 import { SiCachet } from 'react-icons/si';
 import { IoPersonOutline } from 'react-icons/io5';
+import { CiLaptop } from 'react-icons/ci';
+import './Topbar.css';
 
-export default function Sidebar() {
+export default function Topbar() {
   const onDragStart = (event: React.DragEvent, nodeType: string) => {
     event.dataTransfer.setData('application/reactflow', nodeType);
     event.dataTransfer.effectAllowed = 'move';
   };
   //drag and drop nodes: loadBalancer, server, database, cache,
   return (
-    <aside>
+    <body className="top">
       <div className="description">
         Drag and drop to build your system diagram!
       </div>
@@ -21,7 +23,8 @@ export default function Sidebar() {
         onDragStart={(event) => onDragStart(event, 'client')}
         draggable
       >
-        Client
+        <CiLaptop />
+        &nbsp; Client
       </div>
       <div
         className="dndnode loadbalancer"
@@ -31,8 +34,13 @@ export default function Sidebar() {
         <TbLoadBalancer />
         &nbsp; Load Balancer
       </div>
-      <div className="dndnode server" onDragStart={(event) => onDragStart(event, 'server')} draggable>
-        Server
+      <div
+        className="dndnode server"
+        onDragStart={(event) => onDragStart(event, 'server')}
+        draggable
+      >
+        <GrServer />
+        &nbsp; Server
       </div>
       <div
         className="dndnode database"
@@ -58,6 +66,6 @@ export default function Sidebar() {
         <IoPersonOutline />
         &nbsp; Custom Input
       </div>
-    </aside>
+    </body>
   );
-};
+}

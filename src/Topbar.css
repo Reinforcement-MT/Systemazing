@@ -1,0 +1,22 @@
+.top {
+  border-right: 1px solid #eee;
+  padding: 15px 10px;
+  font-size: 12px;
+  background: #fcfcfc;
+  margin-bottom: 10px;
+}
+
+.top .description {
+  margin-bottom: 10px;
+}
+
+@media screen and (min-width: 768px) {
+  .top {
+    flex-direction: row;
+  }
+
+  .top aside {
+    width: 20%;
+    max-width: 250px;
+  }
+}

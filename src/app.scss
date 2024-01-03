@@ -1,25 +1,37 @@
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 #main {
+  border: 1px solid black;
+  height: 100vh;
+
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
+
+  #top {
     border: 1px solid black;
-    height: 100vh;
+    height: 15%;
+    width: 90%;
+    padding: 10px;
+    margin: 5px;
+  }
 
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-
-    #left {
-        border: 1px solid black;
-        height: 98%;
-        width: 49%;
-    }
-
-    #chart{
-        border: 1px solid black;
-        height: 98%;
-        width: 49%;
-    }
+  #chart {
+    border: 1px solid black;
+    height: 70%;
+    width: 90%;
+    padding: 10px;
+    margin: 5px;
+  }
+  #btm {
+    border: 1px solid black;
+    height: 15%;
+    width: 90%;
+    padding: 10px;
+    margin: 5px;
+  }
 }

@@ -153,7 +153,7 @@ const Flowchart = () => {
           </ReactFlow>
         </div>
       </ReactFlowProvider>
-      <button onClick={(e) => {traverse(nodes, edges, 'dndnode_1')}}>Analyze</button>
+
     </div>
   );
 };

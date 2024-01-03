@@ -1,6 +1,7 @@
 // import React from 'react'
 import Flowchart from '../Flowchart';
 import Topbar from '../Topbar';
+import Btmbar from '../Btmbar';
 
 const MainContainer = () => {
   return (
@@ -12,7 +13,7 @@ const MainContainer = () => {
         <Flowchart />
       </div>
       <div id="btm">
-        <btmbar />
+        <Btmbar />
       </div>
     </div>
   );

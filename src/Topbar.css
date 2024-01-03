@@ -1,22 +1,19 @@
-.top {
-  border-right: 1px solid #eee;
-  padding: 15px 10px;
-  font-size: 12px;
-  background: #fcfcfc;
+.topdndnode {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.description {
   margin-bottom: 10px;
 }
 
-.top .description {
-  margin-bottom: 10px;
-}
+.title {
+  position: relative;
+  text-align: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: 300;
+  font-size: 40px;
+  color: #3d1111f2;
 
-@media screen and (min-width: 768px) {
-  .top {
-    flex-direction: row;
-  }
-
-  .top aside {
-    width: 20%;
-    max-width: 250px;
-  }
 }

@@ -75,7 +75,7 @@ const MainContainer = () => {
     <div id='main' data-testid="main">
       <Topbar />
       <div id="chart" data-testid='chart'>
-        <Flowchart nodes={nodes} setNodes={setNodes} onNodesChange={onNodesChange} edges={edges} setEdges={setEdges} onEdgesChange={onEdgesChange} />
+        <Flowchart nodes={nodes} setNodes={setNodes} onNodesChange={onNodesChange} edges={edges} onConnect={onConnect} setEdges={setEdges} onEdgesChange={onEdgesChange} />
       </div>
       <div id="btm">
         <Btmbar nodes={nodes} edges={edges} />

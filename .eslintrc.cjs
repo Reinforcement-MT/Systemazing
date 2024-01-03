@@ -8,11 +8,27 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: [
+    'react-refresh',
+    '@stylistic'
+  ],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': [
+      'error',
+      { 'vars': 'local' },
+      { 'varsIgnorePattern': '^_' }
+    ],
+    '@stylistic/ts/comma-spacing': [
+      'error',
+      {
+        "before": false,
+        "after": true
+      }
+    ]
   },
 }

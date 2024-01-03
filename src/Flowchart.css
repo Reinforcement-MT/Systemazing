@@ -45,6 +45,15 @@
   margin-top: 10px;
 }
 
+.react-flow__node-custom input{
+  text-align: center;
+  border: none;
+}
+
+.react-flow__node-custom input ::placeholder{
+  color: lightgray;
+}
+
 @media screen and (min-width: 768px) {
   .dndflow {
     flex-direction: row;

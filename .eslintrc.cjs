@@ -8,7 +8,10 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh'],
+  plugins: [
+    'react-refresh',
+    '@stylistic'
+  ],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
@@ -19,6 +22,13 @@ module.exports = {
       'error',
       { 'vars': 'local' },
       { 'varsIgnorePattern': '^_' }
+    ],
+    '@stylistic/ts/comma-spacing': [
+      'warn',
+      {
+        "before": false,
+        "after": true
+      }
     ]
   },
 }

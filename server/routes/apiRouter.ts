@@ -12,4 +12,6 @@ router.post('/queryChat',(_,res: Response) => {
 
 })
 
-export default router;
+export {
+  router
+};

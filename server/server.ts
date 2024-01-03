@@ -1,17 +1,14 @@
 import express,{ Application,Request,Response,ErrorRequestHandler } from 'express';
-import './types/server-types'
 import { ServerError } from './types/server-types';
 // import dotenv from 'dotenv';
 // dotenv.config();
 
 // import in routers
-import apiRouter from './routes/apiRouter'
-
+import { router as apiRouter } from './routes/apiRouter.ts'
 
 // Create server
 const app: Application = express();
 const PORT: number = 3000;
-
 
 // parse incoming requests
 app.use(express.json())

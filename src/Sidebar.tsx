@@ -14,11 +14,11 @@ export default function Sidebar() {
   return (
     <aside>
       <div className="description">
-        You can drag these nodes to the pane on the right.
+        Drag and drop to build your system diagram!
       </div>
       <div
         className="dndnode loadBalancer"
-        onDragStart={(event) => onDragStart(event, 'loadBalancer')}
+        onDragStart={(event) => onDragStart(event, 'default')}
         draggable
       >
         <TbLoadBalancer />
@@ -26,7 +26,7 @@ export default function Sidebar() {
       </div>
       <div
         className="dndnode server"
-        onDragStart={(event) => onDragStart(event, 'server')}
+        onDragStart={(event) => onDragStart(event, 'default')}
         draggable
       >
         <GrServer />
@@ -34,7 +34,7 @@ export default function Sidebar() {
       </div>
       <div
         className="dndnode database"
-        onDragStart={(event) => onDragStart(event, 'database')}
+        onDragStart={(event) => onDragStart(event, 'default')}
         draggable
       >
         <BsDatabase />
@@ -42,20 +42,20 @@ export default function Sidebar() {
       </div>
       <div
         className="dndnode cache"
-        onDragStart={(event) => onDragStart(event, 'cache')}
+        onDragStart={(event) => onDragStart(event, 'default')}
         draggable
       >
         <SiCachet />
         &nbsp; Cache
       </div>
       <div
-        className="dndnode client"
-        onDragStart={(event) => onDragStart(event, 'client')}
+        className="dndnode custom"
+        onDragStart={(event) => onDragStart(event, 'custom')}
         draggable
       >
         <IoPersonOutline />
-        &nbsp; Client
+        &nbsp; Custom Input
       </div>
     </aside>
   );
-}
+};

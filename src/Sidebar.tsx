@@ -17,24 +17,26 @@ export default function Sidebar() {
         Drag and drop to build your system diagram!
       </div>
       <div
-        className="dndnode loadBalancer"
-        onDragStart={(event) => onDragStart(event, 'default')}
+        className="dndnode client"
+        onDragStart={(event) => onDragStart(event, 'client')}
+        draggable
+      >
+        Client
+      </div>
+      <div
+        className="dndnode loadbalancer"
+        onDragStart={(event) => onDragStart(event, 'loadbalancer')}
         draggable
       >
         <TbLoadBalancer />
         &nbsp; Load Balancer
       </div>
-      <div
-        className="dndnode server"
-        onDragStart={(event) => onDragStart(event, 'default')}
-        draggable
-      >
-        <GrServer />
-        &nbsp; Server
+      <div className="dndnode server" onDragStart={(event) => onDragStart(event, 'server')} draggable>
+        Server
       </div>
       <div
         className="dndnode database"
-        onDragStart={(event) => onDragStart(event, 'default')}
+        onDragStart={(event) => onDragStart(event, 'database')}
         draggable
       >
         <BsDatabase />
@@ -42,7 +44,7 @@ export default function Sidebar() {
       </div>
       <div
         className="dndnode cache"
-        onDragStart={(event) => onDragStart(event, 'default')}
+        onDragStart={(event) => onDragStart(event, 'cache')}
         draggable
       >
         <SiCachet />

@@ -1,7 +1,11 @@
-import Flowchart from "./Flowchart";
+import MainContainer from "./components/MainContainer";
+import './app.scss'
 
 function App() {
-  return <Flowchart />
+
+  return (
+    <MainContainer />
+  )
 }
 
 export default App;

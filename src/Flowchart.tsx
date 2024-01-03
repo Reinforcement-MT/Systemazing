@@ -15,8 +15,13 @@ import 'reactflow/dist/style.css';
 import { traverse } from './utils/traverse.js';
 import Sidebar from './Sidebar';
 import CustomNode from './nodeTypes/CustomNode';
+import ServerNode from './nodeTypes/ServerNode';
 
 import './Flowchart.css';
+import DatabaseNode from './nodeTypes/DatabaseNode.js';
+import CacheNode from './nodeTypes/CacheNode.js';
+import ClientNode from './nodeTypes/ClientNode.js';
+import LoadBalancerNode from './nodeTypes/LoadBalancerNode.js';
 
 const initialNodes: Node[] = [
   {
@@ -65,11 +70,17 @@ const initialEdges: Edge[] = [
   },
 ];
 
-let id = 0;
+let id = 4;
 const getId = () => `dndnode_${id++}`;
 
 const Flowchart = () => {
-  const nodeTypes = useMemo(() => ({ custom: CustomNode }), []);
+  const nodeTypes = useMemo(() => ({
+    custom: CustomNode,
+    server: ServerNode,
+    database: DatabaseNode,
+    cache: CacheNode,
+    client: ClientNode,
+    loadbalancer: LoadBalancerNode}), []);
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -102,7 +113,7 @@ const Flowchart = () => {
       if (typeof type === 'undefined' || !type) {
         return;
       }
-
+      
       // reactFlowInstance.project was renamed to reactFlowInstance.screenToFlowPosition
       // and you don't need to subtract the reactFlowBounds.left/top anymore
       // details: https://reactflow.dev/whats-new/2023-11-10

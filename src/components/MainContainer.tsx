@@ -2,18 +2,20 @@
 import Flowchart from '../Flowchart';
 import Topbar from '../Topbar';
 import Btmbar from '../Btmbar';
+import Infobox from '../Infobox';
+import { useState } from 'react';
 
-import ReactFlow, {
+import {
+  useOnSelectionChange,
   addEdge,
   useNodesState,
   useEdgesState,
   Node,
   Edge,
-  Connection
+  Connection,
 } from 'reactflow';
 
 import { useCallback } from 'react';
-
 
 const initialNodes: Node[] = [
   {
@@ -62,27 +64,65 @@ const initialEdges: Edge[] = [
   },
 ];
 
+type GraphSelection = { nodes: Node[]; edges: Edge[]; };
 
 const MainContainer = () => {
-
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
+  const onConnect = useCallback((params: Connection) => {
+    setEdges((eds) => addEdge(params, eds));
+  }, []);
 
-  const onConnect = useCallback((params: Connection) => { setEdges((eds) => addEdge(params, eds)); }, []);
+  // const [selection, setSelection] = useState<GraphSelection>({nodes: [], edges: []});
+
+  const [selectedNodes, setSelectedNodes] = useState<string[]>([]);
+  const [selectedEdges, setSelectedEdges] = useState<string[]>([]);
+
+  useOnSelectionChange({
+    onChange: ({ nodes, edges }) => {
+      setSelectedNodes(nodes.map((node) => node.id));
+      setSelectedEdges(edges.map((edge) => edge.id));
+    },
+  });
+
+  const setCustomData = (newCustomData: string) => {
+    // Traverse nodes, find the right ID, then update its data, then setNodes to the new Nodes object
+    console.log("Custom data!!", newCustomData)
+    setNodes((prevNodes: Node[]) => {
+      return prevNodes.map(node => {
+        if (node.id === selectedNodes[0]) {
+          const data = { ...node.data,customData: newCustomData };
+          const newNode = { ...node,data };
+          return newNode;
+        }
+        else return node;
+      })
+    })
+  }
+
+
 
   return (
-    <div id="main">
-      <div id="top">
-        <Topbar />
+      <div id="main">
+        <div id="top">
+          <Topbar />
+        </div>
+        <div id="chart">
+          <Flowchart
+            nodes={nodes}
+            setNodes={setNodes}
+            onNodesChange={onNodesChange}
+            edges={edges}
+            onEdgesChange={onEdgesChange}
+          />
+        </div>
+        <Infobox setCustomData={setCustomData}
+        />
+        <div id="btm">
+          <Btmbar nodes={nodes} edges={edges} />
+        </div>
       </div>
-      <div id="chart">
-        <Flowchart nodes={nodes} setNodes={setNodes} onNodesChange={onNodesChange} edges={edges} onEdgesChange={onEdgesChange} />
-      </div>
-      <div id="btm">
-        <Btmbar nodes={nodes} edges={edges} />
-      </div>
-    </div>
   );
 };
 

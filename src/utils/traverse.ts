@@ -18,7 +18,7 @@ function buildEdgeDescription(edge: Edge,source: Node,dest: Node): string {
 };
 
 
-export async function traverse(nodes: Node[],edges: Edge[],initialNode: string) {
+export function traverse(nodes: Node[],edges: Edge[],initialNode: string) {
 
   // Map from node names to objects
   const nodeMap: Record<string,Node> = Object.fromEntries(nodes.map(node => [node.id,node]));
@@ -35,9 +35,8 @@ export async function traverse(nodes: Node[],edges: Edge[],initialNode: string) 
   const visitedNodes: Record<string,boolean> = { initialNode: true };
   while (queue.length > 0) {
     const currentNodeName = queue.shift()!;
-    // console.log('Name: ', currentNodeName);
     const currentNode = nodeMap[currentNodeName];
-    // console.log('Node: ', currentNode);
+
     // Maybe push this first time node is referenced?
     description.push(buildNodeDescription(currentNode));
     visitedNodes[currentNode.id] = true;

@@ -1,5 +1,5 @@
-import { useState, useRef, useCallback, useMemo } from 'react';
-import ReactFlow, {
+import { useState,useRef,useCallback,useMemo } from 'react';
+import ReactFlow,{
   ReactFlowProvider,
   Controls,
   ReactFlowInstance,
@@ -22,31 +22,32 @@ import ChatBox from './ChatBox.js';
 let id = 4;
 const getId = () => `dndnode_${id++}`;
 
-type FlowchartProps  = {nodes: Node[], edges: Edge[], onNodesChange: any, onEdgesChange: any, onConnect: any, setNodes: any};
-const Flowchart = ({nodes, edges, setNodes, onNodesChange, onEdgesChange, onConnect}: FlowchartProps) => {
+type FlowchartProps = { nodes: Node[],edges: Edge[],onNodesChange: any,onEdgesChange: any,onConnect: any,setNodes: any };
+const Flowchart = ({ nodes,edges,setNodes,onNodesChange,onEdgesChange,onConnect }: FlowchartProps) => {
   const nodeTypes = useMemo(() => ({
     custom: CustomNode,
     server: ServerNode,
     database: DatabaseNode,
     cache: CacheNode,
     client: ClientNode,
-    loadbalancer: LoadBalancerNode}), []);
+    loadbalancer: LoadBalancerNode
+  }),[]);
   const reactFlowWrapper = useRef(null);
-  const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
+  const [reactFlowInstance,setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
 
 
   const onDragOver = useCallback((event: React.DragEvent) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
-  }, []);
+  },[]);
 
-  const setCustomData = (id: string, newCustomData: string) => {
+  const setCustomData = (id: string,newCustomData: string) => {
     // Traverse nodes, find the right ID, then update its data, then setNodes to the new Nodes object
     setNodes((prevNodes: Node[]) => {
-      return prevNodes.map( node => {
+      return prevNodes.map(node => {
         if (node.id === id) {
-          const data = {...node.data, customData: newCustomData};
-          const newNode = {...node, data};
+          const data = { ...node.data,customData: newCustomData };
+          const newNode = { ...node,data };
           return newNode;
         }
         else return node;
@@ -68,7 +69,7 @@ const Flowchart = ({nodes, edges, setNodes, onNodesChange, onEdgesChange, onConn
       // reactFlowInstance.project was renamed to reactFlowInstance.screenToFlowPosition
       // and you don't need to subtract the reactFlowBounds.left/top anymore
       // details: https://reactflow.dev/whats-new/2023-11-10
-      console.log('Instance: ', reactFlowInstance?.toObject());
+      console.log('Instance: ',reactFlowInstance?.toObject());
       const position = reactFlowInstance!.screenToFlowPosition({
         x: event.clientX,
         y: event.clientY,
@@ -77,7 +78,7 @@ const Flowchart = ({nodes, edges, setNodes, onNodesChange, onEdgesChange, onConn
         id: getId(),
         type,
         position,
-        data: { label: `${type}`, setCustomData },
+        data: { label: `${type}`,setCustomData },
       };
 
       setNodes((nds: Node[]) => nds.concat(newNode));

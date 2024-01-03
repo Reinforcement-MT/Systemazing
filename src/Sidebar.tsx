@@ -8,22 +8,22 @@ export default function Sidebar() {
   //drag and drop nodes: loadBalancer, server, database, cache,
   return (
     <aside>
-      <div className="description">You can drag these nodes to the pane on the right.</div>
-      <div className="dndnode loadBalancer" onDragStart={(event) => onDragStart(event, 'loadBalancer')} draggable>
+      <div className="description">Drag and drop to build your system diagram!</div>
+      <div className="dndnode loadBalancer" onDragStart={(event) => onDragStart(event, 'default')} draggable>
         Load Balancer
       </div>
-      <div className="dndnode server" onDragStart={(event) => onDragStart(event, 'server')} draggable>
+      <div className="dndnode server" onDragStart={(event) => onDragStart(event, 'default')} draggable>
         Server
       </div>
-      <div className="dndnode database" onDragStart={(event) => onDragStart(event, 'database')} draggable>
+      <div className="dndnode database" onDragStart={(event) => onDragStart(event, 'default')} draggable>
         Database
       </div>
-      <div className="dndnode cache" onDragStart={(event) => onDragStart(event, 'cache')} draggable>
+      <div className="dndnode cache" onDragStart={(event) => onDragStart(event, 'default')} draggable>
         Cache
       </div>
-      <div className="dndnode client" onDragStart={(event) => onDragStart(event, 'client')} draggable>
-        Client
+      <div className="dndnode custom" onDragStart={(event) => onDragStart(event, 'custom')} draggable>
+        Custom Input
       </div>
     </aside>
   );
-};
+}

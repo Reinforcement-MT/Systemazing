@@ -1,4 +1,4 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useMemo } from 'react';
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -11,6 +11,7 @@ import ReactFlow, {
 import 'reactflow/dist/style.css';
 
 import Sidebar from './Sidebar';
+import CustomNode from './nodeTypes/CustomNode';
 
 import './Flowchart.css';
 
@@ -27,6 +28,7 @@ let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 const Flowchart = () => {
+  const nodeTypes = useMemo(() => ({ custom: CustomNode }), []);
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
@@ -65,7 +67,7 @@ const Flowchart = () => {
         id: getId(),
         type,
         position,
-        data: { label: `${type} node` },
+        data: { label: `${type}` },
       };
 
       setNodes((nds) => nds.concat(newNode));
@@ -79,6 +81,7 @@ const Flowchart = () => {
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow
             nodes={nodes}
+            nodeTypes={nodeTypes}
             edges={edges}
             onNodesChange={onNodesChange}
             onEdgesChange={onEdgesChange}

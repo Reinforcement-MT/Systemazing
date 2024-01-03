@@ -1,4 +1,5 @@
 import express,{ Application,Request,Response,ErrorRequestHandler } from 'express';
+import cors from 'cors';
 import { ServerError } from './types/server-types';
 // import dotenv from 'dotenv';
 // dotenv.config();
@@ -11,12 +12,11 @@ const app: Application = express();
 const PORT: number = 3000;
 
 // parse incoming requests
-app.use(express.text());
-
-// app.use(express.json());
+// app.use(express.text());
+app.use(express.json());
 
 // incoming route handlers
-app.use('/api',apiRouter);
+app.use('/api',cors(),apiRouter);
 
 
 // unknown route handler

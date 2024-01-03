@@ -1,15 +1,21 @@
 import { Node,Edge } from 'reactflow';
 
+function getNodeLabel(node: Node) {
+  return (node.type === 'custom') ? node.data.customData : node.data.label;
+}
 
 // Build ChatGPT prompt line for a node
 function buildNodeDescription(node: Node): string {
-  return `Node~ ${node}`;
+  const label = getNodeLabel(node);
+  // console.log(node);
+  return `Entity: ${label}`;
 }
 
 // Build ChatGPT prompt line for an edge
-function buildEdgeDescription(edge: Edge,source?: Node,dest?: Node): string {
-  return `Edge~ ${edge}`;
-}
+function buildEdgeDescription(edge: Edge,source: Node,dest: Node): string {
+  // console.log(edge);
+  return `${getNodeLabel(source)} CONNECTS TO ${getNodeLabel(dest)}`;
+};
 
 
 export async function traverse(nodes: Node[],edges: Edge[],initialNode: string) {

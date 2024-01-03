@@ -22,6 +22,7 @@ import DatabaseNode from './nodeTypes/DatabaseNode.js';
 import CacheNode from './nodeTypes/CacheNode.js';
 import ClientNode from './nodeTypes/ClientNode.js';
 import LoadBalancerNode from './nodeTypes/LoadBalancerNode.js';
+import ChatBox from './ChatBox.js';
 
 const initialNodes: Node[] = [
   {
@@ -155,6 +156,7 @@ const Flowchart = () => {
         </div>
         <Sidebar />
       </ReactFlowProvider>
+      <ChatBox/>
       <button onClick={(e) => {traverse(nodes, edges, 'dndnode_1')}}>Analyze</button>
     </div>
   );

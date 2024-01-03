@@ -25,7 +25,7 @@ import LoadBalancerNode from './nodeTypes/LoadBalancerNode.js';
 const initialNodes: Node[] = [
   {
     id: 'dndnode_1',
-    type: 'default',
+    type: 'client',
     data: { label: 'Client' },
     position: {
       x: 250,
@@ -34,7 +34,7 @@ const initialNodes: Node[] = [
   },
   {
     id: 'dndnode_2',
-    type: 'default',
+    type: 'server',
     data: { label: 'Server' },
     position: {
       x: 273,
@@ -43,7 +43,7 @@ const initialNodes: Node[] = [
   },
   {
     id: 'dndnode_3',
-    type: 'default',
+    type: 'database',
     data: { label: 'Database' },
     position: {
       x: 280.5,
@@ -83,15 +83,7 @@ const Flowchart = () => {
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
-  const [reactFlowInstance, setReactFlowInstance] =
-    useState<ReactFlowInstance | null>(null);
-
-  /*
-  const onChange = () => {
-    console.log('onChange!!');
-    traverse(nodes, edges, 'dndnode_1');
-  };
-  */
+  const [reactFlowInstance, setReactFlowInstance] = useState<ReactFlowInstance | null>(null);
 
   const onConnect = useCallback((params: Connection) => {
     setEdges((eds) => addEdge(params, eds));
@@ -101,6 +93,20 @@ const Flowchart = () => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
   }, []);
+
+  const setCustomData = (id: string, newCustomData: string) => {
+    // Traverse nodes, find the right ID, then update its data, then setNodes to the new Nodes object
+    setNodes(prevNodes => {
+      return prevNodes.map( node => {
+        if (node.id === id) {
+          const data = {...node.data, customData: newCustomData};
+          const newNode = {...node, data};
+          return newNode;
+        }
+        else return node;
+      })
+    })
+  }
 
   const onDrop = useCallback(
     (event: React.DragEvent) => {
@@ -112,7 +118,7 @@ const Flowchart = () => {
       if (typeof type === 'undefined' || !type) {
         return;
       }
-      
+
       // reactFlowInstance.project was renamed to reactFlowInstance.screenToFlowPosition
       // and you don't need to subtract the reactFlowBounds.left/top anymore
       // details: https://reactflow.dev/whats-new/2023-11-10
@@ -125,7 +131,7 @@ const Flowchart = () => {
         id: getId(),
         type,
         position,
-        data: { label: `${type}` },
+        data: { label: `${type}`, setCustomData },
       };
 
       setNodes((nds) => nds.concat(newNode));

@@ -24,7 +24,7 @@ module.exports = {
       { 'varsIgnorePattern': '^_' }
     ],
     '@stylistic/ts/comma-spacing': [
-      'warn',
+      'error',
       {
         "before": false,
         "after": true

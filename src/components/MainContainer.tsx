@@ -3,7 +3,7 @@ import Flowchart from '../Flowchart';
 import Topbar from '../Topbar';
 import Btmbar from '../Btmbar';
 import Infobox from '../Infobox';
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 
 import {
   useOnSelectionChange,
@@ -16,13 +16,13 @@ import {
 } from 'reactflow';
 
 const initialNodes: Node[] = [
-  {
+    {
     id: 'dndnode_1',
     type: 'client',
     data: { label: 'Client', customData:"" },
     position: {
-      x: 250,
-      y: 5,
+      x: 25,
+      y: 75,
     },
   },
   {
@@ -30,8 +30,8 @@ const initialNodes: Node[] = [
     type: 'server',
     data: { label: 'Server', customData:"" },
     position: {
-      x: 273,
-      y: 92.25,
+      x: 125,
+      y: 125,
     },
   },
   {
@@ -39,8 +39,8 @@ const initialNodes: Node[] = [
     type: 'database',
     data: { label: 'Database', customData:"" },
     position: {
-      x: 280.5,
-      y: 196.25,
+      x: 250,
+      y: 175,
     },
   },
 ];
@@ -108,11 +108,11 @@ const MainContainer = () => {
 
 
   return (
-      <div id="main">
+      <div id='main' data-testid="main">
         <div id="top">
           <Topbar />
         </div>
-        <div id="chart">
+        <div id="chart" data-testid='chart'>
           <Flowchart
             nodes={nodes}
             setNodes={setNodes}

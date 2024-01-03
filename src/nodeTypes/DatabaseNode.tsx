@@ -1,14 +1,16 @@
 import { Handle, Position } from 'reactflow';
-import { useState, useCallback } from 'react';
+import { BsDatabase } from 'react-icons/bs';
+import React, { useState, useCallback } from 'react';
 
 function DatabaseNode( {data, id}: NodeProps ) {
   return (
     <>
-      <Handle type="target" position={Position.Top} />
-      <div className='react-flow__node-default node-column'>
-        Database
+      <Handle type="target" position={Position.Left} />
+      <div className='default-node'>
+        <BsDatabase />
+        <p>DB</p>
       </div>
-      <Handle type="source" position={Position.Bottom} id="a" />
+      <Handle type="source" position={Position.Right} id="a" />
     </>
   );
 }

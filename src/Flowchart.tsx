@@ -85,7 +85,7 @@ const Flowchart = ({ nodes, edges, setNodes, onNodesChange, onEdgesChange, onCon
             onSelectionChange={onSelectionChange}
             fitView
           >
-            <Controls />
+            {/* <Controls /> */}
           </ReactFlow>
         </div>
     </div>

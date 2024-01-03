@@ -12,6 +12,7 @@ import 'reactflow/dist/style.css';
 
 import Sidebar from './Sidebar';
 import CustomNode from './nodeTypes/CustomNode';
+import ServerNode from './nodeTypes/ServerNode';
 
 import './Flowchart.css';
 
@@ -28,7 +29,7 @@ let id = 0;
 const getId = () => `dndnode_${id++}`;
 
 const Flowchart = () => {
-  const nodeTypes = useMemo(() => ({ custom: CustomNode }), []);
+  const nodeTypes = useMemo(() => ({ custom: CustomNode, server: ServerNode }), []);
   const reactFlowWrapper = useRef(null);
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);

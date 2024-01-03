@@ -12,7 +12,7 @@ export default function Sidebar() {
       <div className="dndnode loadBalancer" onDragStart={(event) => onDragStart(event, 'default')} draggable>
         Load Balancer
       </div>
-      <div className="dndnode server" onDragStart={(event) => onDragStart(event, 'default')} draggable>
+      <div className="dndnode server" onDragStart={(event) => onDragStart(event, 'server')} draggable>
         Server
       </div>
       <div className="dndnode database" onDragStart={(event) => onDragStart(event, 'default')} draggable>

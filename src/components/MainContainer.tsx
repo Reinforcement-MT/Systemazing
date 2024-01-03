@@ -12,7 +12,7 @@ import ReactFlow, {
   Connection
 } from 'reactflow';
 
-import { useCallback } from 'react';
+import React, { useCallback } from 'react';
 
 
 const initialNodes: Node[] = [
@@ -77,7 +77,7 @@ const MainContainer = () => {
       <div id="chart" data-testid='chart'>
         <Flowchart nodes={nodes} setNodes={setNodes} onNodesChange={onNodesChange} edges={edges} setEdges={setEdges} onEdgesChange={onEdgesChange} />
       </div>
-      <div id="btm">
+      <div id="btm" data-testid="btm">
         <Btmbar nodes={nodes} edges={edges} />
       </div>
     </div>

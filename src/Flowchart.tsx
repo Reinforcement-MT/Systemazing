@@ -23,7 +23,7 @@ let id = 4;
 const getId = () => `dndnode_${id++}`;
 
 type FlowchartProps = { nodes: Node[],edges: Edge[],onNodesChange: any,onEdgesChange: any,onConnect: any,setNodes: any };
-const Flowchart = ({ nodes,edges,setNodes,onNodesChange,onEdgesChange,onConnect }: FlowchartProps) => {
+const Flowchart = ({ nodes,edges, setNodes, onNodesChange, onEdgesChange,onConnect }: FlowchartProps) => {
   const nodeTypes = useMemo(() => ({
     custom: CustomNode,
     server: ServerNode,
@@ -87,7 +87,7 @@ const Flowchart = ({ nodes,edges,setNodes,onNodesChange,onEdgesChange,onConnect 
   );
 
   return (
-    <div className="dndflow">
+    <div className="dndflow" >
       <ReactFlowProvider>
         <div className="reactflow-wrapper" ref={reactFlowWrapper}>
           <ReactFlow

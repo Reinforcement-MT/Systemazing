@@ -76,10 +76,9 @@ const MainContainer = () => {
   }, []);
 
   useOnSelectionChange({
-    onChange: ({ nodes: selectedNodes,  edges: selectedEdges }) => {
+    onChange: ({ nodes: selectedNodes, edges: selectedEdges }) => {
       nodes.forEach(node => {
         if (node.selected) {
-          console.log("Setting info state: ", node.data.customData)
           setInfoState(node.data.customData);
         }}
       )}}
@@ -87,12 +86,11 @@ const MainContainer = () => {
 
   const setCustomData = (newCustomData: string) => {
     // Traverse nodes, find the right ID, then update its data, then setNodes to the new Nodes object
-    console.log("Custom data!!", newCustomData)
     setNodes((prevNodes: Node[]) => {
       return prevNodes.map(node => {
         if (node.selected) {
           const data = { ...node.data,customData: newCustomData };
-          const newNode = { ...node,data };
+          const newNode = { ...node, data };
           return newNode;
         }
         else return node;

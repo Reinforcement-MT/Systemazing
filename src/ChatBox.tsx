@@ -22,7 +22,6 @@ export default function ChatBox({nodes, edges}: TraverseProps){
     try {
       const body = JSON.stringify({ description: description,graph: graph });
 
-      // console.log("Body: ",body);
       const response = await fetch('http://localhost:3000/api/queryChat',{
         method: "POST",
         headers: {

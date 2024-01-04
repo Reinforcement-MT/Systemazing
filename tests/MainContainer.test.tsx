@@ -1,12 +1,11 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
 import App from '../src/App';
-import MainContainer from '../src/components/MainContainer';
 import Flowchart from '../src/Flowchart';
 
 describe('MainContainer', () => {
   it('renders MainContainer', () => {
-    render(<MainContainer />);
+    render(<App />);
     screen.debug();
   });
 });
@@ -25,7 +24,7 @@ describe('App', () => {
     expect(top).toBeInTheDocument();
 
     const topbar = top?.firstChild;
-    expect(topbar).toHaveAttribute('id', 'top-bar');
+    expect(topbar).toHaveAttribute('id', 'top');
 
   });
 

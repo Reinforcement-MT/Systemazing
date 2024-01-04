@@ -119,7 +119,7 @@ const MainContainer = () => {
           />
         </div>
         <Infobox infoState={infoState} onChange={onChange} />
-        <div id="btm">
+        <div id="btm" data-testid="btm">
           <Btmbar nodes={nodes} edges={edges} />
         </div>
       </div>

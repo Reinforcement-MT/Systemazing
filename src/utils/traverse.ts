@@ -1,24 +1,29 @@
 import { Node,Edge } from 'reactflow';
 
 function getNodeLabel(node: Node) {
+  // Todo: Add other field
   return (node.type === 'custom') ? node.data.customData : node.data.label;
 }
 
+
 // Build ChatGPT prompt line for a node
+// Todo: Uniquely identify nodes instad of just writing the label
 function buildNodeDescription(node: Node): string {
   const label = getNodeLabel(node);
-  // console.log(node);
-  return `Entity: ${label}`;
+  let description = `Entity: ${label}`;
+  if (node.data.customData) {
+    description += " - " + node.data.customData;
+  }
+  return description;
 }
 
 // Build ChatGPT prompt line for an edge
 function buildEdgeDescription(edge: Edge,source: Node,dest: Node): string {
-  // console.log(edge);
   return `${getNodeLabel(source)} CONNECTS TO ${getNodeLabel(dest)}`;
 };
 
 
-export async function traverse(nodes: Node[],edges: Edge[],initialNode: string) {
+export function traverse(nodes: Node[],edges: Edge[],initialNode: string) {
 
   // Map from node names to objects
   const nodeMap: Record<string,Node> = Object.fromEntries(nodes.map(node => [node.id,node]));
@@ -35,9 +40,9 @@ export async function traverse(nodes: Node[],edges: Edge[],initialNode: string) 
   const visitedNodes: Record<string,boolean> = { initialNode: true };
   while (queue.length > 0) {
     const currentNodeName = queue.shift()!;
-    // console.log('Name: ', currentNodeName);
     const currentNode = nodeMap[currentNodeName];
-    // console.log('Node: ', currentNode);
+    console.log("Node: ", currentNode)
+
     // Maybe push this first time node is referenced?
     description.push(buildNodeDescription(currentNode));
     visitedNodes[currentNode.id] = true;

@@ -1,4 +1,4 @@
-import React,{ FormEvent,ReactEventHandler } from "react";
+import React from "react";
 import { traverse } from "./utils/traverse";
 import { useState } from "react";
 import { AiOutlineEnter } from 'react-icons/ai';
@@ -22,7 +22,6 @@ export default function ChatBox({nodes, edges}: TraverseProps){
     try {
       const body = JSON.stringify({ description: description,graph: graph });
 
-      // console.log("Body: ",body);
       const response = await fetch('http://localhost:3000/api/queryChat',{
         method: "POST",
         headers: {

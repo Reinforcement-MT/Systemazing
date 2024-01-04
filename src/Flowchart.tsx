@@ -1,7 +1,5 @@
-import { useState,useRef,useCallback,useMemo } from 'react';
+import React, { useState,useRef,useCallback,useMemo } from 'react';
 import ReactFlow, {
-  ReactFlowProvider,
-  Controls,
   ReactFlowInstance,
   Node,
   Edge
@@ -20,8 +18,8 @@ import LoadBalancerNode from './nodeTypes/LoadBalancerNode.js';
 let id = 4;
 const getId = () => `dndnode_${id++}`;
 
-type FlowchartProps = { nodes: Node[],edges: Edge[],onNodesChange: any,onEdgesChange: any,onConnect: any,setNodes: any, setSelection: any, onSelectionChange: any };
-const Flowchart = ({ nodes, edges, setNodes, onNodesChange, onEdgesChange, onConnect, setSelection, onSelectionChange }: FlowchartProps) => {
+type FlowchartProps = { nodes: Node[],edges: Edge[],onNodesChange: any,onEdgesChange: any,onConnect: any,setNodes: any, };
+const Flowchart = ({ nodes, edges, setNodes, onNodesChange, onEdgesChange, onConnect }: FlowchartProps) => {
   const nodeTypes = useMemo(() => ({
     custom: CustomNode,
     server: ServerNode,
@@ -82,7 +80,6 @@ const Flowchart = ({ nodes, edges, setNodes, onNodesChange, onEdgesChange, onCon
             onInit={setReactFlowInstance}
             onDrop={onDrop}
             onDragOver={onDragOver}
-            onSelectionChange={onSelectionChange}
             fitView
           >
             {/* <Controls /> */}

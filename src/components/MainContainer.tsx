@@ -62,8 +62,6 @@ const initialEdges: Edge[] = [
   },
 ];
 
-type GraphSelection = { nodes: Node[]; edges: Edge[]; };
-
 const MainContainer = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
@@ -76,7 +74,7 @@ const MainContainer = () => {
   }, []);
 
   useOnSelectionChange({
-    onChange: ({ nodes: selectedNodes, edges: selectedEdges }) => {
+    onChange: ({ nodes: _, edges: __ }) => {
       nodes.forEach(node => {
         if (node.selected) {
           setInfoState(node.data.customData);
@@ -116,6 +114,7 @@ const MainContainer = () => {
             setNodes={setNodes}
             onNodesChange={onNodesChange}
             edges={edges}
+            onConnect={onConnect}
             onEdgesChange={onEdgesChange}
           />
         </div>

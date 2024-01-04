@@ -1,10 +1,14 @@
 import MainContainer from "./components/MainContainer";
 import './app.scss'
+import { ReactFlowProvider } from "reactflow";
 
 function App() {
 
   return (
-    <MainContainer />
+
+    <ReactFlowProvider>
+      <MainContainer />
+    </ReactFlowProvider>
   )
 }
 

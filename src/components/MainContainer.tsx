@@ -66,7 +66,7 @@ const MainContainer = () => {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initialEdges);
 
-  const [infoState, setInfoState] = useState("INFO");
+  const [infoState, setInfoState] = useState("");
   console.log("infoState: ", infoState);
 
   const onConnect = useCallback((params: Connection) => {
